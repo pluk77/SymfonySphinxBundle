@@ -802,10 +802,6 @@ class Query
      */
     protected function applyQueryBuilder(array $results): \Doctrine\ORM\Query
     {
-        if (count($results) == 0) {
-            return [];
-        }
-
         $ids = array_map('intval', array_column($results, 'id'));
         $results = [];
 
