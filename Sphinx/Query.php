@@ -711,7 +711,7 @@ class Query
      *
      * @return array
      */
-    public function getResults(): array
+    public function getResults()
     {
         if($this->_state === self::STATE_CLEAN) {
             $this->results;
@@ -800,7 +800,7 @@ class Query
      *
      * @return array
      */
-    protected function applyQueryBuilder(array $results): array
+    protected function applyQueryBuilder(array $results): \Doctrine\ORM\Query
     {
         if (count($results) == 0) {
             return [];
@@ -821,18 +821,7 @@ class Query
             $this->queryBuilder->resetDQLPart('orderBy');
         }
 
-        $entities = $this->queryBuilder->getQuery()->getResult();
-
-        foreach ($entities as $entity) {
-            $idGetter = 'get' . ucfirst($this->queryBuilderColumn);
-            $id = $entity->$idGetter();
-            $position = array_search($id, $ids);
-            $results[$position] = $entity;
-        }
-
-        ksort($results);
-
-        return array_values($results);
+	return $this->queryBuilder->getQuery();
     }
     
     private function populateMetadata() {
