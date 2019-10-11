@@ -760,9 +760,9 @@ class Query
         $this->logger->logQuery($this->getSQL(), $this->getNumRows(), $endTime - $startTime);
         $this->logger->logQuery(self::META_STATEMENT, $this->getTotalFound(), $this->getTime());
 
-        if ($this->queryBuilder) {
-            $this->results = $this->applyQueryBuilder($this->results);
-        }
+//        if ($this->queryBuilder) {
+//            $this->results = $this->applyQueryBuilder($this->results);
+//        }
         
         return $this->numRows;
     }
