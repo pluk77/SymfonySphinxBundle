@@ -607,7 +607,9 @@ class Query
             $clauses[] = 'ORDER BY ' . $this->buildOrder($this->orderBy);
         }
 
-        $clauses[] = sprintf('LIMIT %d, %d', $this->offset, $this->limit);
+        if ($this->limit) {
+            $clauses[] = sprintf('LIMIT %d, %d', $this->offset, $this->limit);
+        }
 
         if ($this->option) {
             $clauses[] = 'OPTION ' . $this->buildOption($this->option);
